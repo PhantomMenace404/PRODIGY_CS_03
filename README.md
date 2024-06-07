@@ -48,7 +48,6 @@ SecurePassChecker is a tool to assess the strength of a password based on length
 
 Upon opening the SecurePassChecker GUI, you will see the following interface:
 
-![SecurePassChecker GUI]
 ![gui_example](https://github.com/PhantomMenace404/PRODIGY_CS_03/assets/106921014/ee8bbbee-73eb-4849-8010-f0710b79bce1)
 
 
@@ -62,15 +61,19 @@ Upon opening the SecurePassChecker GUI, you will see the following interface:
 
 ### Password Hidden (Eye Closed)
 
-![Password Hidden]()
+![imageseye_closed](https://github.com/PhantomMenace404/PRODIGY_CS_03/assets/106921014/8ed6fc85-5ccd-4bd7-9f4b-85ab946b94cd)
 
 ### Password Visible (Eye Open)
 
-![Password Visible](images/eye_open.png)
+![eye_open](https://github.com/PhantomMenace404/PRODIGY_CS_03/assets/106921014/33ea3360-63d7-4263-8dd5-249786e56372)
+
 
 ### Checking Password Strength
 
-![Checking Password Strength](images/password_check.png)
+![password_check1](https://github.com/PhantomMenace404/PRODIGY_CS_03/assets/106921014/1f0c7a4b-b755-47f0-a50c-1f3d25519c8d)
+
+![password_check2](https://github.com/PhantomMenace404/PRODIGY_CS_03/assets/106921014/b4b1663b-755a-417c-bf7d-7caccba6b0de)
+
 
 
 
