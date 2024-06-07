@@ -48,8 +48,9 @@ SecurePassChecker is a tool to assess the strength of a password based on length
 
 Upon opening the SecurePassChecker GUI, you will see the following interface:
 
-![SecurePassChecker GUI](images/![gui_example](https://github.com/PhantomMenace404/PRODIGY_CS_03/assets/106921014/29c86956-f017-4f14-aedf-cb4fc3b498e6)
-)
+![SecurePassChecker GUI]
+[gui_example](https://github.com/PhantomMenace404/PRODIGY_CS_03/assets/106921014/29c86956-f017-4f14-aedf-cb4fc3b498e6)
+
 
 1. **Password Field**: Enter your password here.
 
