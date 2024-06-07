@@ -1,4 +1,6 @@
 import re
+import tkinter as tk
+from tkinter import messagebox
 
 def check_password_complexity(password):
     # Define the criteria for password complexity
@@ -36,8 +38,32 @@ def check_password_complexity(password):
     
     return feedback
 
-# Example usage
-if __name__ == "__main__":
-    password = input("Enter a password to check its complexity: ")
-    result = check_password_complexity(password)
-    print(result)
+def on_check_password():
+    password = entry.get()
+    if password:
+        result = check_password_complexity(password)
+        messagebox.showinfo("Password Complexity", result)
+    else:
+        messagebox.showwarning("Input Error", "Please enter a password")
+
+# Create the main window
+root = tk.Tk()
+root.title("SecurePassChecker")
+
+# Set window size
+root.geometry("400x200")
+
+# Create a label
+label = tk.Label(root, text="Enter your password:", font=("Arial", 14))
+label.pack(pady=10)
+
+# Create an entry widget
+entry = tk.Entry(root, show="*", font=("Arial", 14), width=30)
+entry.pack(pady=10)
+
+# Create a button to check password complexity
+button = tk.Button(root, text="Check Password", font=("Arial", 14), command=on_check_password)
+button.pack(pady=10)
+
+# Start the GUI event loop
+root.mainloop()
