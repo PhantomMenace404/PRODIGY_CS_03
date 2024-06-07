@@ -1,5 +1,6 @@
 import re
 import tkinter as tk
+from tkinter import ttk
 from tkinter import messagebox
 
 def check_password_complexity(password):
@@ -38,7 +39,7 @@ def check_password_complexity(password):
     
     return feedback
 
-def on_check_password():
+def on_check_password(event=None):
     password = entry.get()
     if password:
         result = check_password_complexity(password)
@@ -46,23 +47,42 @@ def on_check_password():
     else:
         messagebox.showwarning("Input Error", "Please enter a password")
 
+def toggle_password_visibility():
+    if entry.cget('show') == '':
+        entry.config(show='*')
+        toggle_button.config(text='Show Password')
+    else:
+        entry.config(show='')
+        toggle_button.config(text='Hide Password')
+
 # Create the main window
 root = tk.Tk()
 root.title("SecurePassChecker")
 
-# Set window size
-root.geometry("400x200")
+# Set window size and center it on the screen
+root.geometry("400x250")
+root.eval('tk::PlaceWindow . center')
+
+# Use ttk for a modern look
+style = ttk.Style()
+style.configure("TLabel", font=("Arial", 14))
+style.configure("TButton", font=("Arial", 14))
 
 # Create a label
-label = tk.Label(root, text="Enter your password:", font=("Arial", 14))
+label = ttk.Label(root, text="Enter your password:")
 label.pack(pady=10)
 
 # Create an entry widget
-entry = tk.Entry(root, show="*", font=("Arial", 14), width=30)
+entry = ttk.Entry(root, show="*", font=("Arial", 14), width=30)
 entry.pack(pady=10)
+entry.bind('<Return>', on_check_password)  # Bind Enter key to check password
+
+# Create a button to toggle password visibility
+toggle_button = ttk.Button(root, text="Show Password", command=toggle_password_visibility)
+toggle_button.pack(pady=5)
 
 # Create a button to check password complexity
-button = tk.Button(root, text="Check Password", font=("Arial", 14), command=on_check_password)
+button = ttk.Button(root, text="Check Password", command=on_check_password)
 button.pack(pady=10)
 
 # Start the GUI event loop
