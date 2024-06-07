@@ -13,7 +13,7 @@ SecurePassChecker is a tool to assess the strength of a password based on length
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/SecurePassChecker.git
+    git clone https://github.com/PhantomMenace404/PRODIGY_CS_03.git
     ```
 2. Navigate to the directory:
     ```bash
