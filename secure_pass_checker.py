@@ -2,6 +2,7 @@ import re
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
+from PIL import Image, ImageTk
 
 def check_password_complexity(password):
     # Define the criteria for password complexity
@@ -50,10 +51,10 @@ def on_check_password(event=None):
 def toggle_password_visibility():
     if entry.cget('show') == '':
         entry.config(show='*')
-        toggle_button.config(text='Show Password')
+        toggle_button.config(image=eye_open_image)
     else:
         entry.config(show='')
-        toggle_button.config(text='Hide Password')
+        toggle_button.config(image=eye_closed_image)
 
 # Create the main window
 root = tk.Tk()
@@ -72,17 +73,27 @@ style.configure("TButton", font=("Arial", 14))
 label = ttk.Label(root, text="Enter your password:")
 label.pack(pady=10)
 
-# Create an entry widget
-entry = ttk.Entry(root, show="*", font=("Arial", 14), width=30)
-entry.pack(pady=10)
+# Create an entry widget with an eye icon button
+entry_frame = ttk.Frame(root)
+entry_frame.pack(pady=10)
+
+entry = ttk.Entry(entry_frame, show="*", font=("Arial", 14), width=28)
+entry.pack(side=tk.LEFT, padx=5)
 entry.bind('<Return>', on_check_password)  # Bind Enter key to check password
 
-# Create a button to toggle password visibility
-toggle_button = ttk.Button(root, text="Show Password", command=toggle_password_visibility)
-toggle_button.pack(pady=5)
+eye_open_image = ImageTk.PhotoImage(Image.open("eye_open.png").resize((20, 20)))
+eye_closed_image = ImageTk.PhotoImage(Image.open("eye_closed.png").resize((20, 20)))
 
-# Create a button to check password complexity
-button = ttk.Button(root, text="Check Password", command=on_check_password)
+toggle_button = ttk.Button(entry_frame, image=eye_closed_image, command=toggle_password_visibility, style="RoundedButton.TButton")
+toggle_button.pack(side=tk.LEFT)
+
+# Create a button to check password complexity with rounded edges
+style.configure("RoundedButton.TButton", font=("Arial", 14), relief="flat", padding=10)
+style.map("RoundedButton.TButton",
+          relief=[("active", "flat")],
+          background=[("active", "#ececec")])
+
+button = ttk.Button(root, text="Check Password", command=on_check_password, style="RoundedButton.TButton")
 button.pack(pady=10)
 
 # Start the GUI event loop
