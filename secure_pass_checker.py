@@ -56,6 +56,10 @@ def toggle_password_visibility():
         entry.config(show='')
         toggle_button.config(image=eye_closed_image)
 
+def on_close():
+    print("\nThank you for using SecurePassChecker. Have a great day!")
+    root.destroy()
+
 # Create the main window
 root = tk.Tk()
 root.title("SecurePassChecker")
@@ -96,5 +100,11 @@ style.map("RoundedButton.TButton",
 button = ttk.Button(root, text="Check Password", command=on_check_password, style="RoundedButton.TButton")
 button.pack(pady=10)
 
+# Handle the close event
+root.protocol("WM_DELETE_WINDOW", on_close)
+
 # Start the GUI event loop
-root.mainloop()
+try:
+    root.mainloop()
+except KeyboardInterrupt:
+    on_close()
