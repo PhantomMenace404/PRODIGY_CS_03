@@ -17,7 +17,7 @@ SecurePassChecker is a tool to assess the strength of a password based on length
     ```
 2. Navigate to the directory:
     ```bash
-    cd SecurePassChecker
+    cd PRODIGY_CS_03
     ```
 3. Run the script:
     ```bash
