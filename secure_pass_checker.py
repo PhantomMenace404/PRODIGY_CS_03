@@ -2,7 +2,6 @@ import re
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
-from PIL import Image, ImageTk
 
 def check_password_complexity(password):
     # Define the criteria for password complexity
@@ -51,10 +50,12 @@ def on_check_password(event=None):
 def toggle_password_visibility():
     if entry.cget('show') == '':
         entry.config(show='*')
-        toggle_button.config(image=eye_open_image)
+        canvas.itemconfig(eye_icon, state='normal')
+        canvas.itemconfig(eye_slash, state='hidden')
     else:
         entry.config(show='')
-        toggle_button.config(image=eye_closed_image)
+        canvas.itemconfig(eye_icon, state='hidden')
+        canvas.itemconfig(eye_slash, state='normal')
 
 def on_close():
     print("\nThank you for using SecurePassChecker. Have a great day!")
@@ -85,11 +86,17 @@ entry = ttk.Entry(entry_frame, show="*", font=("Arial", 14), width=28)
 entry.pack(side=tk.LEFT, padx=5)
 entry.bind('<Return>', on_check_password)  # Bind Enter key to check password
 
-eye_open_image = ImageTk.PhotoImage(Image.open("eye_open.png").resize((20, 20)))
-eye_closed_image = ImageTk.PhotoImage(Image.open("eye_closed.png").resize((20, 20)))
+# Create a canvas for the eye icon
+canvas = tk.Canvas(entry_frame, width=24, height=24, highlightthickness=0)
+canvas.pack(side=tk.LEFT)
 
-toggle_button = ttk.Button(entry_frame, image=eye_closed_image, command=toggle_password_visibility, style="RoundedButton.TButton")
-toggle_button.pack(side=tk.LEFT)
+# Draw the eye icon
+eye_icon = canvas.create_oval(5, 10, 19, 14, outline="black", fill="white")
+eye_slash = canvas.create_line(4, 4, 20, 20, fill="red", width=2)
+canvas.itemconfig(eye_slash, state='hidden')
+
+# Bind the canvas click event to toggle password visibility
+canvas.bind("<Button-1>", lambda e: toggle_password_visibility())
 
 # Create a button to check password complexity with rounded edges
 style.configure("RoundedButton.TButton", font=("Arial", 14), relief="flat", padding=10)
